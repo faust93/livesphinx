@@ -25,5 +25,8 @@ def magic_convert_function(text):
             print "Building Sphinx at %s & %s" % (indir, outdir)
             print "Current dir: %s" % os.listdir(indir)
             support.build()
+            shutil.rmtree("/usr/src/app/static/_images", ignore_errors=True)
+            if os.path.exists(outdir + "/static/_images"):
+                shutil.move(outdir + "/static/_images", "/usr/src/app/static/")
             contents = support.get_document('index')
             return contents['body']
